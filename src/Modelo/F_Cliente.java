@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class F_Cliente extends Conexion{
     
-   private final Conexion sql = new Conexion();
+   private final Conexion mysql = new Conexion();
     private Connection cn;
     private String sSQL = "";
     private String sSQL2 = "";
@@ -24,7 +24,7 @@ public class F_Cliente extends Conexion{
    public DefaultTableModel mostrar(String buscar) {
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "Nombre", "A_Paterno", "A_Materno", "Tipo_Documento", "Númeo Documento", "Dirección", "Teléfono", "Email", "Código"};
+        String[] titulos = {"ID", "Nombre", "APaterno", "AMaterno", "Tipo_Documento", "Númeo Documento", "Dirección", "Teléfono", "Email", "Código"};
 
         String[] registro = new String[10];
 
@@ -32,22 +32,23 @@ public class F_Cliente extends Conexion{
         
         modelo = new DefaultTableModel(null, titulos);
 
-        sSQL = "select p.Id_Persona,p.Nombre,p.A_Paterno,p.A_Materno,p.Tipo_Documento,p.Numero_Documento,"
+        sSQL = "select p.IdPersona,p.Nombre,p.APaterno,p.AMaterno,p.Tipo_Documento,p.num_documento,"
                 + "p.Direccion,p.Telefono,p.Email,c.Codigo_Cliente from Persona p inner join Cliente c "
-                + "on p.Id_Persona=c.Id_Persona where Numero_Documento like '%"
-                + buscar + "%' order by Id_Persona desc";
+                + "on p.IdPersona=c.IdPersona where num_documento like '%"
+                + buscar + "%' order by IdPersona desc";
 
         try {
+            cn=mysql.conectar();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("Id_Persona");
+                registro[0] = rs.getString("IdPersona");
                 registro[1] = rs.getString("Nombre");
-                registro[2] = rs.getString("A_Paterno");
-                registro[3] = rs.getString("A_Materno");
+                registro[2] = rs.getString("APaterno");
+                registro[3] = rs.getString("AMaterno");
                 registro[4] = rs.getString("Tipo_Documento");
-                registro[5] = rs.getString("Numero_Documento");
+                registro[5] = rs.getString("num_documento");
                 registro[6] = rs.getString("Direccion");
                 registro[7] = rs.getString("Telefono");
                 registro[8] = rs.getString("Email");
@@ -67,12 +68,12 @@ public class F_Cliente extends Conexion{
     }
 
     public boolean insertar(Cliente dts) {
-        sSQL = "insert into Persona (Nombre,A_Paterno,A_Materno,Tipo_Documento,Numero_Documento,Direccion,Telefono,Email)"
+        sSQL = "insert into Persona (Nombre,APaterno,AMaterno,Tipo_Documento,num_documento,Direccion,Telefono,Email)"
                 + "values (?,?,?,?,?,?,?,?)";
-        sSQL2 = "insert into Cliente (Id_Persona,Codigo_Cliente)"
-                + "values ((select Id_Persona from Persona order by Id_Persona desc limit 1),?)";
+        sSQL2 = "insert into Cliente (IdPersona,Codigo_Cliente)"
+                + "values ((select IdPersona from Persona order by IdPersona desc limit 1),?)";
         try {
-
+cn=mysql.conectar();
             PreparedStatement pst = cn.prepareStatement(sSQL);
             PreparedStatement pst2 = cn.prepareStatement(sSQL2);
 
@@ -110,13 +111,13 @@ public class F_Cliente extends Conexion{
     }
 
     public boolean editar(Cliente dts) {
-        sSQL = "update Persona set Nombre=?,A_Paterno=?,A_Materno=?,Tipo_Documento=?,Numero_Documento=?,"
-                + " Direccion=?,Telefono=?,Email=? where Id_Persona=?";
+        sSQL = "update Persona set Nombre=?,APaterno=?,AMaterno=?,Tipo_Documento=?,num_documento=?,"
+                + " Direccion=?,Telefono=?,Email=? where IdPersona=?";
         
         sSQL2 = "update Cliente set Codigo_Cliente=?"
-                + " where Id_Persona=?";
+                + " where IdPersona=?";
         try {
-
+cn=mysql.conectar();
             PreparedStatement pst = cn.prepareStatement(sSQL);
             PreparedStatement pst2 = cn.prepareStatement(sSQL2);
 
@@ -128,10 +129,10 @@ public class F_Cliente extends Conexion{
             pst.setString(6, dts.getDireccion());
             pst.setString(7, dts.getTelefono());
             pst.setString(8, dts.getEmail());
-            pst.setInt(9, dts.getId_Persona());
+            pst.setInt(9, dts.getIdPersona());
 
             pst2.setString(1, dts.getCodigo_Cliente());
-            pst2.setInt(2, dts.getId_Persona());
+            pst2.setInt(2, dts.getIdPersona());
 
             int n = pst.executeUpdate();
 
@@ -156,19 +157,19 @@ public class F_Cliente extends Conexion{
     }
 
     public boolean eliminar(Cliente dts) {
-        sSQL = "delete from Cliente where Id_Persona=?";
-        sSQL2 = "delete from Persona where Id_Persona=?";
+        sSQL = "delete from Cliente where IdPersona=?";
+        sSQL2 = "delete from Persona where IdPersona=?";
 
         try {
-
+cn=mysql.conectar();
             PreparedStatement pst = cn.prepareStatement(sSQL);
             PreparedStatement pst2 = cn.prepareStatement(sSQL2);
 
             
-            pst.setInt(1, dts.getId_Persona());
+            pst.setInt(1, dts.getIdPersona());
 
             
-            pst2.setInt(1, dts.getId_Persona());
+            pst2.setInt(1, dts.getIdPersona());
 
             int n = pst.executeUpdate();
 

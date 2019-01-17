@@ -634,7 +634,7 @@ public class FrmPago extends javax.swing.JFrame {
                 F_Pago func = new F_Pago();
                 Pago dts= new Pago();
 
-                dts.setId_Pago(Integer.parseInt(txtIdPago.getText()));
+                dts.setIdPago(Integer.parseInt(txtIdPago.getText()));
                 func.eliminar(dts);
                 mostrar(IdReserva);
                 inhabilitar();
@@ -673,7 +673,7 @@ public class FrmPago extends javax.swing.JFrame {
         Pago dts = new Pago();
         F_Pago func = new F_Pago();
 
-        dts.setId_Reserva(Integer.parseInt(txtIdReserva.getText()));
+        dts.setIdReserva(Integer.parseInt(txtIdReserva.getText()));
         
         int seleccionado = CboTipoComprobante.getSelectedIndex();
         dts.setTipo_Comprobante((String) CboTipoComprobante.getItemAt(seleccionado));
@@ -710,7 +710,7 @@ public class FrmPago extends javax.swing.JFrame {
                 FHabitacion func2 = new FHabitacion();
                 Habitacion dts2 = new Habitacion();
                 
-                dts2.setId_Habitacion(Integer.parseInt(txtIdHabitacion.getText()));
+                dts2.setIdHabitacion(Integer.parseInt(txtIdHabitacion.getText()));
                 func2.desocupar(dts2);
                 
                 //Cancelar o pagar la reserva
@@ -718,12 +718,12 @@ public class FrmPago extends javax.swing.JFrame {
                 F_Reserva func3 = new F_Reserva();
                 Reserva dts3 = new Reserva();
                 
-                dts3.setId_Reserva(Integer.parseInt(txtIdReserva.getText()));
+                dts3.setIdReserva(Integer.parseInt(txtIdReserva.getText()));
                 func3.Pagar(dts3);  
             }
         }
         else if (accion.equals("editar")){
-            dts.setId_Pago(Integer.parseInt(txtIdPago.getText()));
+            dts.setIdPago(Integer.parseInt(txtIdPago.getText()));
 
             if (func.Editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El pago del Sr. " + 

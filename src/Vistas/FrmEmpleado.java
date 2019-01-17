@@ -606,7 +606,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
                 F_Empleado func = new F_Empleado();
                 Empleado dts= new Empleado();
 
-                dts.setId_Persona(Integer.parseInt(txtidpersona.getText()));
+                dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 inhabilitar();
@@ -695,7 +695,7 @@ public class FrmEmpleado extends javax.swing.JFrame {
 
         }
         else if (accion.equals("editar")){
-            dts.setId_Persona(Integer.parseInt(txtidpersona.getText()));
+            dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
 
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El empleado fue editado satisfactoriamente");

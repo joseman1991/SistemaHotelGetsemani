@@ -418,8 +418,8 @@ public class FrmConsumo extends javax.swing.JFrame {
         Consumo dts = new Consumo();
         F_Consumo func = new F_Consumo();
 
-        dts.setId_Reserva(Integer.parseInt(text_Id_Reserva.getText()));
-        dts.setId_Producto(Integer.parseInt(text_Id_Producto.getText()));
+        dts.setIdReserva(Integer.parseInt(text_Id_Reserva.getText()));
+        dts.setIdProducto(Integer.parseInt(text_Id_Producto.getText()));
         dts.setCantidad(Double.parseDouble(text_Cantidad.getText()));
         dts.setPrecio_Venta(Double.parseDouble(text_Precio.getText()));
         
@@ -437,7 +437,7 @@ public class FrmConsumo extends javax.swing.JFrame {
 
         }
         else if (accion.equals("Editar")){
-            dts.setId_Consumo(Integer.parseInt(text_Id_Consumo.getText()));
+            dts.setIdConsumo(Integer.parseInt(text_Id_Consumo.getText()));
 
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El consumo del Cliente "

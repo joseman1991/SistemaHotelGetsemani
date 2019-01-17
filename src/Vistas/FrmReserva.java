@@ -20,7 +20,7 @@ public class FrmReserva extends javax.swing.JFrame {
  
     public FrmReserva() {
         initComponents();
-        mostrar("");
+        mostrar("2019-01-01");
         inhabilitar();
     }
      private String accion = "guardar";
@@ -714,9 +714,9 @@ public class FrmReserva extends javax.swing.JFrame {
         Reserva dts = new Reserva();
         F_Reserva func = new F_Reserva ();
         
-        dts.setId_Habitacion(Integer.parseInt(txtidhabitacion.getText()));
-        dts.setId_Cliente(Integer.parseInt(txtidcliente.getText()));
-        dts.setId_Empleado(idusuario);
+        dts.setIdHabitacion(Integer.parseInt(txtidhabitacion.getText()));
+        dts.setIdCliente(Integer.parseInt(txtidcliente.getText()));
+        dts.setIdEmpleado(idusuario);
         
         int seleccionado = cbotipo_reserva.getSelectedIndex();
         dts.setTipo_Reserva((String) cbotipo_reserva.getItemAt(seleccionado));
@@ -755,13 +755,13 @@ public class FrmReserva extends javax.swing.JFrame {
                 FHabitacion func3= new FHabitacion();
                 Habitacion dts3 = new Habitacion();
                 
-                dts3.setId_Habitacion(Integer.parseInt(txtidhabitacion.getText()));
+                dts3.setIdHabitacion(Integer.parseInt(txtidhabitacion.getText()));
                 func3.Ocupar(dts3);
             }
         }
         else if (accion.equals("editar")){
-            dts.setId_Reserva(Integer.parseInt(txtidreserva.getText()));
-            dts.setId_Empleado(Integer.parseInt(txtidempleado.getText()));            
+            dts.setIdReserva(Integer.parseInt(txtidreserva.getText()));
+            dts.setIdEmpleado(Integer.parseInt(txtidempleado.getText()));            
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La reserva fue Editada satisfactoriamente");
                 mostrar("");
@@ -786,7 +786,7 @@ public class FrmReserva extends javax.swing.JFrame {
                 F_Cliente func = new F_Cliente();
                 Cliente dts= new Cliente();
 
-                dts.setId_Persona(Integer.parseInt(txtidreserva.getText()));
+                dts.setIdPersona(Integer.parseInt(txtidreserva.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 inhabilitar();

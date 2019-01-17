@@ -6,10 +6,10 @@ import java.sql.Date;
 
 public class Reserva {
  
-    private int Id_Reserva;
-    private int Id_Habitacion;
-    private int Id_Cliente;
-    private int Id_Empleado;
+    private int IdReserva;
+    private int IdHabitacion;
+    private int IdCliente;
+    private int IdEmpleado;
     private String Tipo_Reserva;
     private Date Fecha_Reserva;
     private Date Fecha_Ingreso;
@@ -20,11 +20,11 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(int Id_Reserva, int Id_Habitacion, int Id_Cliente, int Id_Empleado, String Tipo_Reserva, Date Fecha_Reserva, Date Fecha_Ingreso, Date Fecha_Salida, Double Costo_Alojamiento, String Estado) {
-        this.Id_Reserva = Id_Reserva;
-        this.Id_Habitacion = Id_Habitacion;
-        this.Id_Cliente = Id_Cliente;
-        this.Id_Empleado = Id_Empleado;
+    public Reserva(int IdReserva, int IdHabitacion, int IdCliente, int IdEmpleado, String Tipo_Reserva, Date Fecha_Reserva, Date Fecha_Ingreso, Date Fecha_Salida, Double Costo_Alojamiento, String Estado) {
+        this.IdReserva = IdReserva;
+        this.IdHabitacion = IdHabitacion;
+        this.IdCliente = IdCliente;
+        this.IdEmpleado = IdEmpleado;
         this.Tipo_Reserva = Tipo_Reserva;
         this.Fecha_Reserva = Fecha_Reserva;
         this.Fecha_Ingreso = Fecha_Ingreso;
@@ -33,36 +33,36 @@ public class Reserva {
         this.Estado = Estado;
     }
 
-    public int getId_Reserva() {
-        return Id_Reserva;
+    public int getIdReserva() {
+        return IdReserva;
     }
 
-    public void setId_Reserva(int Id_Reserva) {
-        this.Id_Reserva = Id_Reserva;
+    public void setIdReserva(int IdReserva) {
+        this.IdReserva = IdReserva;
     }
 
-    public int getId_Habitacion() {
-        return Id_Habitacion;
+    public int getIdHabitacion() {
+        return IdHabitacion;
     }
 
-    public void setId_Habitacion(int Id_Habitacion) {
-        this.Id_Habitacion = Id_Habitacion;
+    public void setIdHabitacion(int IdHabitacion) {
+        this.IdHabitacion = IdHabitacion;
     }
 
-    public int getId_Cliente() {
-        return Id_Cliente;
+    public int getIdCliente() {
+        return IdCliente;
     }
 
-    public void setId_Cliente(int Id_Cliente) {
-        this.Id_Cliente = Id_Cliente;
+    public void setIdCliente(int IdCliente) {
+        this.IdCliente = IdCliente;
     }
 
-    public int getId_Empleado() {
-        return Id_Empleado;
+    public int getIdEmpleado() {
+        return IdEmpleado;
     }
 
-    public void setId_Empleado(int Id_Empleado) {
-        this.Id_Empleado = Id_Empleado;
+    public void setIdEmpleado(int IdEmpleado) {
+        this.IdEmpleado = IdEmpleado;
     }
 
     public String getTipo_Reserva() {

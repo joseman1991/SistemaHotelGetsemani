@@ -3,7 +3,7 @@ package Clases;
 
 public class Producto {
   
-  private int Id_Producto;
+  private int IdProducto;
   private String Nombre;
   private String Descripcion;
   private String Unidad_Medida;
@@ -12,20 +12,20 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int Id_Producto, String Nombre, String Descripcion, String Unidad_Medida, Double Precio_Venta) {
-        this.Id_Producto = Id_Producto;
+    public Producto(int IdProducto, String Nombre, String Descripcion, String Unidad_Medida, Double Precio_Venta) {
+        this.IdProducto = IdProducto;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.Unidad_Medida = Unidad_Medida;
         this.Precio_Venta = Precio_Venta;
     }
 
-    public int getId_Producto() {
-        return Id_Producto;
+    public int getIdProducto() {
+        return IdProducto;
     }
 
-    public void setId_Producto(int Id_Producto) {
-        this.Id_Producto = Id_Producto;
+    public void setIdProducto(int IdProducto) {
+        this.IdProducto = IdProducto;
     }
 
     public String getNombre() {

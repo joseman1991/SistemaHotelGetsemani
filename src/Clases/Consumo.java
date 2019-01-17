@@ -4,9 +4,9 @@ package Clases;
 
 public class Consumo {
     
-    private int Id_Consumo;
-    private int Id_Reserva;
-    private int Id_Producto;
+    private int IdConsumo;
+    private int IdReserva;
+    private int IdProducto;
     private Double Cantidad;
     private Double Precio_Venta;
     private String Estado;
@@ -14,37 +14,37 @@ public class Consumo {
     public Consumo() {
     }
 
-    public Consumo(int Id_Consumo, int Id_Reserva, int Id_Producto, Double Cantidad, Double Precio_Venta, String Estado) {
-        this.Id_Consumo = Id_Consumo;
-        this.Id_Reserva = Id_Reserva;
-        this.Id_Producto = Id_Producto;
+    public Consumo(int IdConsumo, int IdReserva, int IdProducto, Double Cantidad, Double Precio_Venta, String Estado) {
+        this.IdConsumo = IdConsumo;
+        this.IdReserva = IdReserva;
+        this.IdProducto = IdProducto;
         this.Cantidad = Cantidad;
         this.Precio_Venta = Precio_Venta;
         this.Estado = Estado;
     }
 
-    public int getId_Consumo() {
-        return Id_Consumo;
+    public int getIdConsumo() {
+        return IdConsumo;
     }
 
-    public void setId_Consumo(int Id_Consumo) {
-        this.Id_Consumo = Id_Consumo;
+    public void setIdConsumo(int IdConsumo) {
+        this.IdConsumo = IdConsumo;
     }
 
-    public int getId_Reserva() {
-        return Id_Reserva;
+    public int getIdReserva() {
+        return IdReserva;
     }
 
-    public void setId_Reserva(int Id_Reserva) {
-        this.Id_Reserva = Id_Reserva;
+    public void setIdReserva(int IdReserva) {
+        this.IdReserva = IdReserva;
     }
 
-    public int getId_Producto() {
-        return Id_Producto;
+    public int getIdProducto() {
+        return IdProducto;
     }
 
-    public void setId_Producto(int Id_Producto) {
-        this.Id_Producto = Id_Producto;
+    public void setIdProducto(int IdProducto) {
+        this.IdProducto = IdProducto;
     }
 
     public Double getCantidad() {

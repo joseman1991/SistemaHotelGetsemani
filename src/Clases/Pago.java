@@ -7,8 +7,8 @@ import java.sql.Date;
 public class Pago {
     
     
-    private int Id_Pago;
-    private int Id_Reserva;
+    private int IdPago;
+    private int IdReserva;
     private String Tipo_Comprobante;
     private String Numero_Comprobante;
     private Double Iva;
@@ -19,9 +19,9 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(int Id_Pago, int Id_Reserva, String Tipo_Comprobante, String Numero_Comprobante, Double Iva, Double Total_Pago, Date Fecha_Emision, Date Fecha_Pago) {
-        this.Id_Pago = Id_Pago;
-        this.Id_Reserva = Id_Reserva;
+    public Pago(int IdPago, int IdReserva, String Tipo_Comprobante, String Numero_Comprobante, Double Iva, Double Total_Pago, Date Fecha_Emision, Date Fecha_Pago) {
+        this.IdPago = IdPago;
+        this.IdReserva = IdReserva;
         this.Tipo_Comprobante = Tipo_Comprobante;
         this.Numero_Comprobante = Numero_Comprobante;
         this.Iva = Iva;
@@ -30,20 +30,20 @@ public class Pago {
         this.Fecha_Pago = Fecha_Pago;
     }
 
-    public int getId_Pago() {
-        return Id_Pago;
+    public int getIdPago() {
+        return IdPago;
     }
 
-    public void setId_Pago(int Id_Pago) {
-        this.Id_Pago = Id_Pago;
+    public void setIdPago(int IdPago) {
+        this.IdPago = IdPago;
     }
 
-    public int getId_Reserva() {
-        return Id_Reserva;
+    public int getIdReserva() {
+        return IdReserva;
     }
 
-    public void setId_Reserva(int Id_reserva) {
-        this.Id_Reserva = Id_reserva;
+    public void setIdReserva(int Idreserva) {
+        this.IdReserva = Idreserva;
     }
 
     public String getTipo_Comprobante() {

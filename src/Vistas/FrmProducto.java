@@ -438,7 +438,7 @@ public class FrmProducto extends javax.swing.JFrame {
             }
         }
         else if (accion.equals("editar")){
-            dts.setId_Producto(Integer.parseInt(txtIdProducto.getText()));
+            dts.setIdProducto(Integer.parseInt(txtIdProducto.getText()));
 
             if (func.Editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El producto fue Editado satisfactoriamente");
@@ -474,7 +474,7 @@ public class FrmProducto extends javax.swing.JFrame {
                 FProducto func = new FProducto();
                 Producto dts= new Producto();
 
-                dts.setId_Producto(Integer.parseInt(txtIdProducto.getText()));
+                dts.setIdProducto(Integer.parseInt(txtIdProducto.getText()));
                 func.Eliminar(dts);
                 mostrar("");
                 inhabilitar();

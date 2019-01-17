@@ -4,7 +4,7 @@ package Clases;
 public class Habitacion {
   
 //VARIABLES DE HABITACION 
-    private  int Id_Habitacion;
+    private  int IdHabitacion;
     private  String  Numero;
     private  String Piso;
     private  String Descripcion;
@@ -15,8 +15,8 @@ public class Habitacion {
 
     // CONSTRUCTOR 
 
-    public Habitacion(int Id_Habitacion, String Numero, String Piso, String Descripcion, String Caracteristicas, double Precio_Dia, String Estado, String Tipo_Habitacion) {
-        this.Id_Habitacion = Id_Habitacion;
+    public Habitacion(int IdHabitacion, String Numero, String Piso, String Descripcion, String Caracteristicas, double Precio_Dia, String Estado, String Tipo_Habitacion) {
+        this.IdHabitacion = IdHabitacion;
         this.Numero = Numero;
         this.Piso = Piso;
         this.Descripcion = Descripcion;
@@ -34,12 +34,12 @@ public class Habitacion {
 
    //GET Y SET PARA SER ALMACENADOS EN LA TABLA HABITACION 
 
-    public int getId_Habitacion() {
-        return Id_Habitacion;
+    public int getIdHabitacion() {
+        return IdHabitacion;
     }
 
-    public void setId_Habitacion(int id_Habitacion) {
-        this.Id_Habitacion = id_Habitacion;
+    public void setIdHabitacion(int id_Habitacion) {
+        this.IdHabitacion = id_Habitacion;
     }
 
     public String getNumero() {

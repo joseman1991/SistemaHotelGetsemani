@@ -22,7 +22,7 @@ public class F_Consumo {
    public DefaultTableModel mostrar(String buscar){
        DefaultTableModel modelo;
        
-       String [] titulos = {"Id","Id_Reserva","Id_Producto","Producto","Cantidad","Precio Venta","Estado"};
+       String [] titulos = {"Id","IdReserva","IdProducto","Producto","Cantidad","Precio Venta","Estado"};
        
        String [] registro =new String [7];
        
@@ -30,18 +30,19 @@ public class F_Consumo {
        TotalConsumo=0.0;
        modelo = new DefaultTableModel(null,titulos);
        
-       sSQL="select c.Id_consumo,c.Id_Reserva,c.Id_Producto,p.Nombre,c.Cantidad,c.Precio_Venta "
-               + ",c.Estado from Consumo c inner join Producto p on c.Id_Producto=p.Id_Producto"
-               + " where c.Id_Reserva ="+ buscar + " order by c.Id_Consumo desc";
+       sSQL="select c.Idconsumo,c.IdReserva,c.IdProducto,p.Nombre,c.Cantidad,c.Precio_Venta "
+               + ",c.Estado from Consumo c inner join Producto p on c.IdProducto=p.IdProducto"
+               + " where c.IdReserva ="+ buscar + " order by c.IdConsumo desc";
        
        try {
+           cn=mysql.conectar();
            Statement st= cn.createStatement();
            ResultSet rs=st.executeQuery(sSQL);
            
            while(rs.next()){
-               registro [0]=rs.getString("Id_consumo");
-               registro [1]=rs.getString("Id_Reserva");
-               registro [2]=rs.getString("Id_Producto");
+               registro [0]=rs.getString("Idconsumo");
+               registro [1]=rs.getString("IdReserva");
+               registro [2]=rs.getString("IdProducto");
                registro [3]=rs.getString("Nombre");
                registro [4]=rs.getString("Cantidad");
                registro [5]=rs.getString("Precio_Venta");
@@ -65,13 +66,13 @@ public class F_Consumo {
    } 
    
    public boolean insertar (Consumo dts){
-       sSQL="insert into Consumo (Id_Reserva,Id_Producto,Cantidad,Precio_Venta,Estado)" +
+       sSQL="insert into Consumo (IdReserva,IdProducto,Cantidad,Precio_Venta,Estado)" +
                "values (?,?,?,?,?)";
        try {
-           
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
-           pst.setInt(1, dts.getId_Reserva());
-           pst.setInt(2, dts.getId_Producto());
+           pst.setInt(1, dts.getIdReserva());
+           pst.setInt(2, dts.getIdProducto());
            pst.setDouble(3, dts.getCantidad());
            pst.setDouble(4, dts.getPrecio_Venta());
            pst.setString(5, dts.getEstado());
@@ -95,18 +96,19 @@ public class F_Consumo {
    }
    
    public boolean editar (Consumo dts){
-       sSQL="update consumo set Id_Reserva=?,Id_Producto()=?,Cantidad=?,Precio_Venta=?,Estado=?"+
-               " where Id_Consumo=?";
+       sSQL="update consumo set IdReserva=?,IdProducto()=?,Cantidad=?,Precio_Venta=?,Estado=?"+
+               " where IdConsumo=?";
            
        
        try {
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
-           pst.setInt(1, dts.getId_Reserva());
-           pst.setInt(2, dts.getId_Producto());
+           pst.setInt(1, dts.getIdReserva());
+           pst.setInt(2, dts.getIdProducto());
            pst.setDouble(3, dts.getCantidad());
            pst.setDouble(4, dts.getPrecio_Venta());
            pst.setString(5, dts.getEstado());
-           pst.setInt(6, dts.getId_Consumo());
+           pst.setInt(6, dts.getIdConsumo());
            
            int n=pst.executeUpdate();
            
@@ -124,13 +126,13 @@ public class F_Consumo {
    }
   
    public boolean eliminar (Consumo dts){
-       sSQL="delete from Consumo where Id_Consumo=?";
+       sSQL="delete from Consumo where IdConsumo=?";
        
        try {
-           
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
            
-           pst.setInt(1, dts.getId_Consumo());
+           pst.setInt(1, dts.getIdConsumo());
            
            int n=pst.executeUpdate();
            

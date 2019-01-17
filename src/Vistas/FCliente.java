@@ -501,7 +501,7 @@ public class FCliente extends javax.swing.JInternalFrame {
                 F_Cliente func = new F_Cliente();
                 Cliente dts= new Cliente();
 
-                dts.setId_Persona(Integer.parseInt(txtidpersona.getText()));
+                dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 inhabilitar();
@@ -622,7 +622,7 @@ public class FCliente extends javax.swing.JInternalFrame {
 
         }
         else if (accion.equals("editar")){
-            dts.setId_Persona(Integer.parseInt(txtidpersona.getText()));
+            dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
 
             if (func.editar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "El Cliente fue Editado satisfactoriamente");

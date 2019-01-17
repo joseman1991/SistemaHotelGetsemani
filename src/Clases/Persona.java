@@ -2,7 +2,7 @@
 package Clases;
 
 public class Persona {
-    private int Id_Persona;
+    private int IdPersona;
     private String Nombre;
     private String A_Paterno;
     private String A_Materno;
@@ -15,8 +15,8 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(int Id_Persona, String Nombre, String A_Paterno, String A_Materno, String Tipo_Documento, String Numero_Documento, String Direccion, String Telefono, String Email) {
-        this.Id_Persona = Id_Persona;
+    public Persona(int IdPersona, String Nombre, String A_Paterno, String A_Materno, String Tipo_Documento, String Numero_Documento, String Direccion, String Telefono, String Email) {
+        this.IdPersona = IdPersona;
         this.Nombre = Nombre;
         this.A_Paterno = A_Paterno;
         this.A_Materno = A_Materno;
@@ -27,12 +27,12 @@ public class Persona {
         this.Email = Email;
     }
 
-    public int getId_Persona() {
-        return Id_Persona;
+    public int getIdPersona() {
+        return IdPersona;
     }
 
-    public void setId_Persona(int Id_Persona) {
-        this.Id_Persona = Id_Persona;
+    public void setIdPersona(int IdPersona) {
+        this.IdPersona = IdPersona;
     }
 
     public String getNombre() {

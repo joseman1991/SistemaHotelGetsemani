@@ -27,14 +27,15 @@ public class FProducto extends Conexion {
        totalregistros=0;
        modelo = new DefaultTableModel(null,titulos);
        
-       sSQL="select * from Producto where Nombre like '%"+ buscar + "%' order by Id_Producto desc";
+       sSQL="select * from Producto where Nombre like '%"+ buscar + "%' order by IdProducto desc";
        
        try {
+           cn=mysql.conectar();
            Statement st= cn.createStatement();
            ResultSet rs=st.executeQuery(sSQL);
            
            while(rs.next()){
-               registro [0]=rs.getString("Id_Producto");
+               registro [0]=rs.getString("IdProducto");
                registro [1]=rs.getString("Nombre");
                registro [2]=rs.getString("Descripcion");
                registro [3]=rs.getString("Unidad_Medida");
@@ -60,7 +61,7 @@ public class FProducto extends Conexion {
        sSQL="insert into Producto (Nombre,Descripcion,Unidad_Medida,Precio_Venta)" +
                "values (?,?,?,?)";
        try {
-           
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
            pst.setString(1, dts.getNombre());
            pst.setString(2, dts.getDescripcion());
@@ -87,16 +88,17 @@ public class FProducto extends Conexion {
    
    public boolean Editar (Producto dts){
        sSQL="update Producto set Nombre=?,Descripcion=?,Unidad_Medida=?,Precio_Venta=?"+
-               " where Id_Producto=?";
+               " where IdProducto=?";
            
        
        try {
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
            pst.setString(1, dts.getNombre());
            pst.setString(2, dts.getDescripcion());
            pst.setString(3, dts.getUnidad_Medida());
            pst.setDouble(4, dts.getPrecio_Venta());
-           pst.setInt(5, dts.getId_Producto());
+           pst.setInt(5, dts.getIdProducto());
            
            int n=pst.executeUpdate();
            
@@ -114,13 +116,13 @@ public class FProducto extends Conexion {
    }
   
    public boolean Eliminar (Producto dts){
-       sSQL="delete from Producto where Id_Producto=?";
+       sSQL="delete from Producto where IdProducto=?";
        
        try {
-           
+           cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
            
-           pst.setInt(1, dts.getId_Producto());
+           pst.setInt(1, dts.getIdProducto());
            
            int n=pst.executeUpdate();
            
