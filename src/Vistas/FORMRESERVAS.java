@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Vistas.FORVISTAHABITACION;
@@ -16,72 +15,68 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FORMRESERVAS extends javax.swing.JInternalFrame {
 
-    
     public FORMRESERVAS() {
         initComponents();
         mostrar("");
         inhabilitar();
-        
+
     }
 
-     private String accion = "guardar";
-     public static int idusuario;
-     
-       void ocultar_columnas() {
+    private String accion = "guardar";
+    public static int idusuario;
+
+    void ocultar_columnas() {
         tablalista.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalista.getColumnModel().getColumn(0).setMinWidth(0);
         tablalista.getColumnModel().getColumn(0).setPreferredWidth(0);
-        
+
         tablalista.getColumnModel().getColumn(1).setMaxWidth(0);
         tablalista.getColumnModel().getColumn(1).setMinWidth(0);
         tablalista.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
+
         tablalista.getColumnModel().getColumn(3).setMaxWidth(0);
         tablalista.getColumnModel().getColumn(3).setMinWidth(0);
         tablalista.getColumnModel().getColumn(3).setPreferredWidth(0);
-        
+
         tablalista.getColumnModel().getColumn(5).setMaxWidth(0);
         tablalista.getColumnModel().getColumn(5).setMinWidth(0);
         tablalista.getColumnModel().getColumn(5).setPreferredWidth(0);
     }
-    
-       void inhabilitar() {
-        
-           txtidreserva.setVisible(false);
-           txtidhabitacion.setVisible(false);
-           txtidcliente.setVisible(false);
-           txtidempleado.setVisible(false);
 
-           txtnumero.setEnabled(false);
-           txtcliente.setEnabled(false);
-           txtempleado.setEnabled(false);
-           cbotipo_reserva.setEnabled(false);
-        
-           fecha_reserva.setEnabled(false);
-           fecha_ingreso.setEnabled(false);
-           fecha_salida.setEnabled(false);
+    void inhabilitar() {
 
-           txtcosto_alojamiento.setEnabled(false);
-           cbotipo_reserva.setEnabled(false);
-           cboestado.setEnabled(false);
+        txtidreserva.setVisible(false);
+        txtidhabitacion.setVisible(false);
+        txtidcliente.setVisible(false);
+        txtidempleado.setVisible(false);
 
-           BotonGuardar.setEnabled(false);
-           BotonCancelar.setEnabled(false);
-           BotonEliminar.setEnabled(false);
-           btnbuscacliente.setEnabled(false);
-           btnbuscahabitacion.setEnabled(false);
-           
+        txtnumero.setEnabled(false);
+        txtcliente.setEnabled(false);
+        txtempleado.setEnabled(false);
+        cbotipo_reserva.setEnabled(false);
 
-           txtidreserva.setText("");
-           txtidcliente.setText("");
-           txtnumero.setText("");
-           txtcliente.setText("");
-           txtcosto_alojamiento.setText("");
-           txtidhabitacion.setText("");
+        fecha_reserva.setEnabled(false);
+        fecha_ingreso.setEnabled(false);
+        fecha_salida.setEnabled(false);
 
+        txtcosto_alojamiento.setEnabled(false);
+        cbotipo_reserva.setEnabled(false);
+        cboestado.setEnabled(false);
+
+        BotonGuardar.setEnabled(false);
+        BotonCancelar.setEnabled(false);
+        BotonEliminar.setEnabled(false);
+        btnbuscacliente.setEnabled(false);
+        btnbuscahabitacion.setEnabled(false);
+
+        txtidreserva.setText("");
+        txtidcliente.setText("");
+        txtnumero.setText("");
+        txtcliente.setText("");
+        txtcosto_alojamiento.setText("");
+        txtidhabitacion.setText("");
 
     }
 
@@ -93,35 +88,33 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         txtnumero.setEnabled(false);
         txtcliente.setEnabled(false);
         txtempleado.setEnabled(false);
-        
+
         cbotipo_reserva.setEnabled(true);
         fecha_reserva.setEnabled(true);
         fecha_ingreso.setEnabled(true);
         fecha_salida.setEnabled(true);
         txtcosto_alojamiento.setEnabled(true);
         cboestado.setEnabled(true);
-        
+
         BotonEliminar.setEnabled(true);
         BotonGuardar.setEnabled(true);
         BotonCancelar.setEnabled(true);
         btnbuscacliente.setEnabled(true);
         btnbuscahabitacion.setEnabled(true);
-        
-        
+
         txtidreserva.setText("");
         txtidcliente.setText("");
         txtnumero.setText("");
         txtcliente.setText("");
         txtcosto_alojamiento.setText("");
         txtidhabitacion.setText("");
-        
 
     }
-    
-      void mostrar(String buscar) {
+
+    void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            F_Reserva func = new F_Reserva ();
+            F_Reserva func = new F_Reserva();
             modelo = func.Mostrar(buscar);
 
             tablalista.setModel(modelo);
@@ -132,6 +125,7 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -456,6 +450,7 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         lbltotalregistros.setText("Registros");
 
         botonverconsumo.setText("Consumos");
+        botonverconsumo.setEnabled(false);
         botonverconsumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonverconsumoActionPerformed(evt);
@@ -463,6 +458,7 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         });
 
         btnrealizarpagos.setText("Realizar Pagos");
+        btnrealizarpagos.setEnabled(false);
         btnrealizarpagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnrealizarpagosActionPerformed(evt);
@@ -585,7 +581,7 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtidhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidhabitacionActionPerformed
-       
+
     }//GEN-LAST:event_txtidhabitacionActionPerformed
 
     private void txtcosto_alojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcosto_alojamientoActionPerformed
@@ -597,19 +593,19 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbotipo_reservaActionPerformed
 
     private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
-       txtnumero.transferFocus();
+        txtnumero.transferFocus();
     }//GEN-LAST:event_txtnumeroActionPerformed
 
     private void txtidclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidclienteActionPerformed
-       
+
     }//GEN-LAST:event_txtidclienteActionPerformed
 
     private void txtclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtclienteActionPerformed
-       txtcliente.transferFocus();
+        txtcliente.transferFocus();
     }//GEN-LAST:event_txtclienteActionPerformed
 
     private void txtidempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidempleadoActionPerformed
-       
+
     }//GEN-LAST:event_txtidempleadoActionPerformed
 
     private void txtempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempleadoActionPerformed
@@ -621,19 +617,19 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cboestadoActionPerformed
 
     private void btnbuscahabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscahabitacionActionPerformed
-        FORVISTAHABITACION  form = new FORVISTAHABITACION ();
+        FORVISTAHABITACION form = new FORVISTAHABITACION();
         FORMINICIO.jDesktopPane1.add(form);
-        form.setLocation( jDesktopPane1.getWidth()/2 - form.getWidth()/2, jDesktopPane1.getHeight()/2 - form.getHeight()/2);
+        form.setLocation(jDesktopPane1.getWidth() / 2 - form.getWidth() / 2, jDesktopPane1.getHeight() / 2 - form.getHeight() / 2);
         form.toFront();
         form.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnbuscahabitacionActionPerformed
 
     private void btnbuscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscaclienteActionPerformed
-        FORVISTACLIENTE form= new  FORVISTACLIENTE ();
+        FORVISTACLIENTE form = new FORVISTACLIENTE();
         FORMINICIO.jDesktopPane1.add(form);
-        form.setLocation( jDesktopPane1.getWidth()/2 - form.getWidth()/2, jDesktopPane1.getHeight()/2 - form.getHeight()/2);
+        form.setLocation(jDesktopPane1.getWidth() / 2 - form.getWidth() / 2, jDesktopPane1.getHeight() / 2 - form.getHeight() / 2);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_btnbuscaclienteActionPerformed
@@ -664,7 +660,7 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         }
 
         Reserva dts = new Reserva();
-        F_Reserva func = new F_Reserva ();
+        F_Reserva func = new F_Reserva();
 
         dts.setIdHabitacion(Integer.parseInt(txtidhabitacion.getText()));
         dts.setIdCliente(Integer.parseInt(txtidcliente.getText()));
@@ -674,27 +670,27 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         dts.setTipo_Reserva((String) cbotipo_reserva.getItemAt(seleccionado));
 
         Calendar cal;
-        int d,m,a;
-        cal=fecha_reserva.getCalendar();
-        d=cal.get(Calendar.DAY_OF_MONTH);
-        m=cal.get(Calendar.MONTH);
-        a=cal.get(Calendar.YEAR) - 1900;
-        dts.setFecha_Reserva(new Date(a,m,d));
+        int d, m, a;
+        cal = fecha_reserva.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        dts.setFecha_Reserva(new Date(a, m, d));
 
-        cal=fecha_ingreso.getCalendar();
-        d=cal.get(Calendar.DAY_OF_MONTH);
-        m=cal.get(Calendar.MONTH);
-        a=cal.get(Calendar.YEAR) - 1900;
-        dts.setFecha_Ingreso(new Date(a,m,d));
+        cal = fecha_ingreso.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        dts.setFecha_Ingreso(new Date(a, m, d));
 
-        cal=fecha_salida.getCalendar();
-        d=cal.get(Calendar.DAY_OF_MONTH);
-        m=cal.get(Calendar.MONTH);
-        a=cal.get(Calendar.YEAR) - 1900;
-        dts.setFecha_Salida(new Date(a,m,d));
+        cal = fecha_salida.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR) - 1900;
+        dts.setFecha_Salida(new Date(a, m, d));
 
         dts.setCosto_Alojamiento(Double.parseDouble(txtcosto_alojamiento.getText()));
-        
+
         seleccionado = cboestado.getSelectedIndex();
         dts.setEstado((String) cboestado.getItemAt(seleccionado));
 
@@ -705,14 +701,13 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
                 inhabilitar();
 
                 //ocupamos la Habitación alquilada
-                F_Habitacion func3= new F_Habitacion();
+                F_Habitacion func3 = new F_Habitacion();
                 Habitacion dts3 = new Habitacion();
 
                 dts3.setIdHabitacion(Integer.parseInt(txtidhabitacion.getText()));
                 func3.Ocupar(dts3);
             }
-        }
-        else if (accion.equals("editar")){
+        } else if (accion.equals("editar")) {
             dts.setIdReserva(Integer.parseInt(txtidreserva.getText()));
             dts.setIdEmpleado(Integer.parseInt(txtidempleado.getText()));
             if (func.editar(dts)) {
@@ -726,15 +721,21 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
         inhabilitar();
     }//GEN-LAST:event_BotonCancelarActionPerformed
-
+    int fila = -1;
     private void tablalistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistaMouseClicked
-        
+
         BotonGuardar.setText("Editar");
         habilitar();
         BotonEliminar.setEnabled(true);
-        accion="editar";
-
-        int fila = tablalista.rowAtPoint(evt.getPoint());
+        accion = "editar";
+        fila = tablalista.rowAtPoint(evt.getPoint());
+        if (!tablalista.getValueAt(fila, 12).toString().equals("Pagada")) {
+            botonverconsumo.setEnabled(true);
+            btnrealizarpagos.setEnabled(true);
+        } else {
+            botonverconsumo.setEnabled(false);
+            btnrealizarpagos.setEnabled(false);
+        }
 
         txtidreserva.setText(tablalista.getValueAt(fila, 0).toString());
         txtidhabitacion.setText(tablalista.getValueAt(fila, 1).toString());
@@ -750,29 +751,31 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
         fecha_salida.setDate(Date.valueOf(tablalista.getValueAt(fila, 10).toString()));
         txtcosto_alojamiento.setText(tablalista.getValueAt(fila, 11).toString());
         cboestado.setSelectedItem(tablalista.getValueAt(fila, 12).toString());
-        
+
     }//GEN-LAST:event_tablalistaMouseClicked
 
     private void botonverconsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonverconsumoActionPerformed
+        if (fila >= 0) {
+            int fila = tablalista.getSelectedRow(); //para aobter la fila que el usu a hecho clic
+            FORMCONSUMO.idreserva = tablalista.getValueAt(fila, 0).toString();
+            FORMCONSUMO.cliente = tablalista.getValueAt(fila, 4).toString();
 
-        int fila = tablalista.getSelectedRow(); //para aobter la fila que el usu a hecho clic
-        FORMCONSUMO.idreserva = tablalista.getValueAt(fila, 0).toString();
-        FORMCONSUMO.cliente = tablalista.getValueAt(fila, 4).toString();
-
-        FORMCONSUMO form = new FORMCONSUMO();
-        FORMINICIO.jDesktopPane1.add(form);
+            FORMCONSUMO form = new FORMCONSUMO();
+            FORMINICIO.jDesktopPane1.add(form);
 //        form.setLocation( jDesktopPane1.getWidth()/2 - form.getWidth()/2, jDesktopPane1.getHeight()/2 - form.getHeight()/2);
-        form.toFront();
-        form.setVisible(true);
+            form.toFront();
+            form.setVisible(true);
+        }
+
     }//GEN-LAST:event_botonverconsumoActionPerformed
 
     private void btnrealizarpagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrealizarpagosActionPerformed
 
         int fila = tablalista.getSelectedRow();
 
-        FORMPAGO.IdReserva= tablalista.getValueAt(fila, 0).toString();
+        FORMPAGO.IdReserva = tablalista.getValueAt(fila, 0).toString();
         FORMPAGO.Cliente = tablalista.getValueAt(fila, 4).toString();
-        FORMPAGO.TotalReserva=Double.parseDouble( tablalista.getValueAt(fila, 11).toString());
+        FORMPAGO.TotalReserva = Double.parseDouble(tablalista.getValueAt(fila, 11).toString());
 
         FORMPAGO.IdHabitacion = tablalista.getValueAt(fila, 1).toString();
         FORMPAGO.Habitacion = tablalista.getValueAt(fila, 2).toString();
@@ -789,13 +792,13 @@ public class FORMRESERVAS extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotonBuscarClienteActionPerformed
 
     private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-       
-        if (!txtidreserva.getText().equals("")) {
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar la Reserva?","Confirmar",2);
 
-            if (confirmacion==0) {
+        if (!txtidreserva.getText().equals("")) {
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar la Reserva?", "Confirmar", 2);
+
+            if (confirmacion == 0) {
                 F_Reserva func = new F_Reserva();
-                Reserva dts= new Reserva();
+                Reserva dts = new Reserva();
 
                 dts.setIdReserva(Integer.parseInt(txtidreserva.getText()));
                 func.Eliminar(dts);

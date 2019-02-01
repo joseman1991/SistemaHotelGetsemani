@@ -551,6 +551,7 @@
         <Component class="javax.swing.JButton" name="botonverconsumo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consumos"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonverconsumoActionPerformed"/>
@@ -559,6 +560,7 @@
         <Component class="javax.swing.JButton" name="btnrealizarpagos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Realizar Pagos"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnrealizarpagosActionPerformed"/>
