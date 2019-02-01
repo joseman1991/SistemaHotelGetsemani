@@ -3,6 +3,9 @@ package Vistas;
 
 import Clases.Cliente;
 import Modelo.F_Cliente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -638,13 +641,23 @@ public class FORMCLIENTE extends javax.swing.JInternalFrame {
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estás seguro de Eliminar el Cliente?","Confirmar",2);
 
             if (confirmacion==0) {
-                F_Cliente func = new F_Cliente();
-                Cliente dts= new Cliente();
-
-                dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
-                func.eliminar(dts);
-                mostrar("");
-                inhabilitar();
+                try {
+                    F_Cliente func = new F_Cliente();
+                    Cliente dts= new Cliente();
+                    
+                    dts.setIdPersona(Integer.parseInt(txtidpersona.getText()));
+                    func.eliminar(dts);
+                    mostrar("");
+                    inhabilitar();
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Driver no encontrado", getTitle(), JOptionPane.ERROR_MESSAGE);
+                } catch (SQLException ex) {
+                    if (ex.getErrorCode() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "No hay conexión con el servidor", getTitle(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
+            }
+                }
 
             }
 

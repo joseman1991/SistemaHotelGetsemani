@@ -33,7 +33,7 @@ public class F_Empleado {
                 + buscar + "%' order by idpersona desc";
 
         try {
-             cn = mysql.conectar();
+            cn = mysql.conectar();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(DSQL);
 
@@ -197,7 +197,7 @@ public class F_Empleado {
         }
     }
 
-    public DefaultTableModel login(String login, String password) {
+    public DefaultTableModel login(String login, String password) throws ClassNotFoundException, SQLException {
         DefaultTableModel modelo;
 
         String[] titulos = {"ID", "Nombre", "APaterno", "AMaterno", "Acceso", "Login", "Password", "Estado"};
@@ -212,31 +212,26 @@ public class F_Empleado {
                 + "on p.idpersona=t.idpersona where t.login='"
                 + login + "' and t.password='" + password + "' and t.estado='A'";
 
-        try {
-            cn = mysql.conectar();
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(DSQL);
+        cn = mysql.conectar();
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(DSQL);
 
-            while (rs.next()) {
-                registro[0] = rs.getString("idpersona");
-                registro[1] = rs.getString("nombre");
-                registro[2] = rs.getString("apaterno");
-                registro[3] = rs.getString("amaterno");
+        while (rs.next()) {
+            registro[0] = rs.getString("idpersona");
+            registro[1] = rs.getString("nombre");
+            registro[2] = rs.getString("apaterno");
+            registro[3] = rs.getString("amaterno");
 
-                registro[4] = rs.getString("acceso");
-                registro[5] = rs.getString("login");
-                registro[6] = rs.getString("password");
-                registro[7] = rs.getString("estado");
+            registro[4] = rs.getString("acceso");
+            registro[5] = rs.getString("login");
+            registro[6] = rs.getString("password");
+            registro[7] = rs.getString("estado");
 
-                TotalRegistros = TotalRegistros + 1;
-                modelo.addRow(registro);
+            TotalRegistros = TotalRegistros + 1;
+            modelo.addRow(registro);
 
-            }
-            return modelo;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return null;
         }
+        return modelo;
 
     }
 

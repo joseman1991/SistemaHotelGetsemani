@@ -161,11 +161,11 @@ public class F_Cliente extends Conexion{
         }
     }
 
-    public boolean eliminar(Cliente dts) throws ClassNotFoundException {
+    public boolean eliminar(Cliente dts) throws ClassNotFoundException, SQLException {
         DSQL = "delete from cliente where idpersona=?";
         DSQL2= "delete from persona where idpersona=?";
 
-        try {
+       
             cn=mysql.conectar();
             PreparedStatement pst = cn.prepareStatement(DSQL);
             PreparedStatement pst2 = cn.prepareStatement(DSQL2);
@@ -191,10 +191,7 @@ public class F_Cliente extends Conexion{
                 return false;
             }
 
-        } catch (SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);
-            return false;
-        }
+                
     }
    
 }

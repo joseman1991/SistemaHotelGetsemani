@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Clases.Empleado;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FORMLOGIN extends javax.swing.JFrame {
 
     public FORMLOGIN() {
@@ -18,7 +16,6 @@ public class FORMLOGIN extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -150,26 +147,26 @@ public class FORMLOGIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-       
+
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
-    
+
         try {
-           
+
             DefaultTableModel modelo;
-            
-            F_Empleado func =new F_Empleado();
-            Empleado dts=new Empleado();
-            
+
+            F_Empleado func = new F_Empleado();
+            Empleado dts = new Empleado();
+
             dts.setLogin(txtusuario.getText());
             dts.setPassword(txtpassword.getText());
-            
-            modelo=func.login(dts.getLogin(),dts.getPassword());
-            
+
+            modelo = func.login(dts.getLogin(), dts.getPassword());
+
             tablalista.setModel(modelo);
-            
-            if (func.TotalRegistros >0) {
+
+            if (func.TotalRegistros > 0) {
                 this.dispose();
                 FORMINICIO form = new FORMINICIO();
                 form.toFront();
@@ -179,45 +176,52 @@ public class FORMLOGIN extends javax.swing.JFrame {
                 FORMINICIO.labelapaterno.setText(tablalista.getValueAt(0, 2).toString());
                 FORMINICIO.labelamaterno.setText(tablalista.getValueAt(0, 3).toString());
                 FORMINICIO.labelacceso.setText(tablalista.getValueAt(0, 4).toString());
-                
+
                 if (!FORMINICIO.labelacceso.getText().equals("Administrador")) {
                     FORMINICIO.MenuArchivo.setEnabled(false);
                     FORMINICIO.MenuConfiguraciones.setEnabled(false);
-                }   
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado", "Acceso al Sistema", JOptionPane.ERROR_MESSAGE);
             }
-            
-            else {
-                JOptionPane.showMessageDialog(rootPane, "Acceso Denegado","Acceso al Sistema",JOptionPane.ERROR_MESSAGE);
-            }
-           
+
         } catch (HeadlessException e) {
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Driver no encontrado", getTitle(), JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            System.out.println(ex.getSQLState());
+            if (ex.getSQLState().equals("08001")) {
+                JOptionPane.showMessageDialog(rootPane, "No hay conexión con el servidor", getTitle(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_BotonIngresarActionPerformed
 
     private void txtpasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyTyped
 
-        int numcaracter=10;
-        if(txtpassword.getText().length()>=numcaracter){
+        int numcaracter = 10;
+        if (txtpassword.getText().length() >= numcaracter) {
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Ha superado el límite de caracteres" );
+            JOptionPane.showMessageDialog(this, "Ha superado el límite de caracteres");
         }
     }//GEN-LAST:event_txtpasswordKeyTyped
 
     private void txtusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyTyped
-         char a = evt.getKeyChar();
+        char a = evt.getKeyChar();
         if (Character.isDigit(a)) {
             getToolkit().beep();
             evt.consume();
         }
-        
-        int numcaracter=15;
-        if(txtusuario.getText().length()>=numcaracter){
-        evt.consume();
-        JOptionPane.showMessageDialog(this, "Ha superado el límite de caracteres" );
+
+        int numcaracter = 15;
+        if (txtusuario.getText().length() >= numcaracter) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ha superado el límite de caracteres");
         }
     }//GEN-LAST:event_txtusuarioKeyTyped
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

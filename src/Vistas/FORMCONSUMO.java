@@ -409,7 +409,7 @@ public class FORMCONSUMO extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_text_Id_ReservaActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        
+         text_Id_Reserva.setText(idreserva);
         if (text_Id_Producto.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes seleccionar un producto");
             Boton_Buscar_Producto.requestFocus();
