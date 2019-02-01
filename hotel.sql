@@ -276,5 +276,5 @@ CREATE TABLE pago (
 --
 
 INSERT INTO pago (idpago, idreserva, tipo_comprobante, num_comprobante, iva, total_pago, fecha_emision, fecha_pago) VALUES
-(1, 1, 'Factura', '0001-00001', '3.00', '100.00', '2016-02-16', '2016-02-16'),
-(2, 2, 'Factura', '0001-0002', '3.00', '109.00', '2016-02-16', '2016-02-16');
+(1, 1, 'Factura', '00001', '3.00', '100.00', '2016-02-16', '2016-02-16'),
+(2, 2, 'Factura', '00002', '3.00', '109.00', '2016-02-16', '2016-02-16');
