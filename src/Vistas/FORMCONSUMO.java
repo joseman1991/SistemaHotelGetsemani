@@ -83,6 +83,7 @@ public class FORMCONSUMO extends javax.swing.JInternalFrame {
         text_Cantidad.setText("");
 
     }
+   
    void mostrar(String buscar) {
         
        try {
@@ -95,7 +96,7 @@ public class FORMCONSUMO extends javax.swing.JInternalFrame {
             Lbl_Total_Registros.setText("Total Registros " + Integer.toString(func.TotalRegistros));
             Lbl_Consumo.setText("Consumo Total $. " + func.TotalConsumo);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(rootPane, e);
+            JOptionPane.showMessageDialog(rootPane, e);
         }
     }
    

@@ -9,7 +9,10 @@ import Modelo.F_Habitacion;
 import Modelo.F_Pago;
 import Modelo.F_Reserva;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +29,15 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
     public static String Habitacion;
     public static Double TotalReserva;
     
+    private void idNextId(){
+        F_Pago p= new F_Pago();
+        try {
+            txtNumComprobante.setText(p.nextID());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public FORMPAGO() {
         initComponents();
         mostrar(IdReserva);
@@ -39,6 +51,7 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
         F_Consumo func = new F_Consumo();
         func.mostrar(IdReserva);
         txtTotal_Pago.setText(Double.toString(TotalReserva + func.TotalConsumo));
+        idNextId();
     }
 
   void ocultar_columnaspagos() {
@@ -92,7 +105,7 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
         txtIdPago.setVisible(false);
         txtIdReserva.setVisible(true);
         txtCliente.setEnabled(true);
-        txtNumComprobante.setEnabled(true);
+//        txtNumComprobante.setEnabled(true);
         CboTipoComprobante.setEnabled(true);
         txtIva.setEnabled(true);
         txtTotal_Pago.setEnabled(true);
@@ -107,7 +120,7 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
         BotonCancelar.setEnabled(true);
         BotonEliminar.setEnabled(true);
         txtIdPago.setText("");
-        txtNumComprobante.setText("");
+//        txtNumComprobante.setText("");
         txtIva.setText("");
         //txtTotal_Pago.setText("");
 
@@ -668,8 +681,7 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
             if (func.Insertar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, " El pago $. " + txtTotal_Pago.getText() +
                     " del Sr. " + txtCliente.getText() + " Ha sido realizado con Éxito");
-                mostrar(IdReserva);
-                inhabilitar();
+                
 
                 //Desocupar la Habitación
                 F_Habitacion func2 = new F_Habitacion();
@@ -685,6 +697,9 @@ public class FORMPAGO extends javax.swing.JInternalFrame {
 
                 dts3.setIdReserva(Integer.parseInt(txtIdReserva.getText()));
                 func3.Pagar(dts3);
+                idNextId();
+                mostrar(IdReserva);
+                inhabilitar();
             }
         }
         else if (accion.equals("editar")){
