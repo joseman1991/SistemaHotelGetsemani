@@ -7,6 +7,7 @@ import Clases.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -160,7 +161,7 @@ public class F_Cliente extends Conexion{
         }
     }
 
-    public boolean eliminar(Cliente dts) {
+    public boolean eliminar(Cliente dts) throws ClassNotFoundException {
         DSQL = "delete from cliente where idpersona=?";
         DSQL2= "delete from persona where idpersona=?";
 
@@ -190,7 +191,7 @@ public class F_Cliente extends Conexion{
                 return false;
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;
         }
