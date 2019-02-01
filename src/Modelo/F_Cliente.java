@@ -16,15 +16,17 @@ public class F_Cliente extends Conexion{
     
    private final Conexion mysql = new Conexion();
     private Connection cn;
-    private String sSQL = "";
-    private String sSQL2 = "";
+    private String DSQL = "";
+    private String DSQL2= "";
     public Integer TotalRegistros;
 
     
    public DefaultTableModel mostrar(String buscar) {
-        DefaultTableModel modelo;
+        
+       DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "Nombre", "APaterno", "AMaterno", "Tipo_Documento", "Númeo Documento", "Dirección", "Teléfono", "Email", "Código"};
+        String[] titulos = {"ID", "Nombre", "Apaterno", "Amaterno", "Tipo_Documento", "n"
+                + "Númeo Documento", "Dirección", "Teléfono", "Email", "Código"};
 
         String[] registro = new String[10];
 
@@ -32,27 +34,28 @@ public class F_Cliente extends Conexion{
         
         modelo = new DefaultTableModel(null, titulos);
 
-        sSQL = "select p.IdPersona,p.Nombre,p.APaterno,p.AMaterno,p.Tipo_Documento,p.num_documento,"
-                + "p.Direccion,p.Telefono,p.Email,c.Codigo_Cliente from Persona p inner join Cliente c "
-                + "on p.IdPersona=c.IdPersona where num_documento like '%"
-                + buscar + "%' order by IdPersona desc";
+        DSQL = "select p.idpersona,p.nombre,p.apaterno,p.amaterno,p.tipo_documento,p.num_documento,"
+                + "p.direccion,p.telefono,p.email,c.codigo_cliente from persona p inner join cliente c "
+                + "on p.idpersona=c.idpersona where num_documento like '%" 
+                + buscar + "%' or nombre ilike '%" 
+                + buscar + "%' order by idpersona desc";
 
         try {
             cn=mysql.conectar();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
+            ResultSet rs = st.executeQuery(DSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("IdPersona");
-                registro[1] = rs.getString("Nombre");
-                registro[2] = rs.getString("APaterno");
-                registro[3] = rs.getString("AMaterno");
-                registro[4] = rs.getString("Tipo_Documento");
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("apaterno");
+                registro[3] = rs.getString("amaterno");
+                registro[4] = rs.getString("tipo_documento");
                 registro[5] = rs.getString("num_documento");
-                registro[6] = rs.getString("Direccion");
-                registro[7] = rs.getString("Telefono");
-                registro[8] = rs.getString("Email");
-                registro[9] = rs.getString("Codigo_Cliente");
+                registro[6] = rs.getString("direccion");
+                registro[7] = rs.getString("telefono");
+                registro[8] = rs.getString("email");
+                registro[9] = rs.getString("codigo_cliente");
 
                 TotalRegistros = TotalRegistros + 1;
                 modelo.addRow(registro);
@@ -66,16 +69,17 @@ public class F_Cliente extends Conexion{
         }
 
     }
+   
 
     public boolean insertar(Cliente dts) {
-        sSQL = "insert into Persona (Nombre,APaterno,AMaterno,Tipo_Documento,num_documento,Direccion,Telefono,Email)"
+        DSQL = "insert into persona (nombre,apaterno,amaterno,tipo_documento,num_documento,direccion,telefono,email)"
                 + "values (?,?,?,?,?,?,?,?)";
-        sSQL2 = "insert into Cliente (IdPersona,Codigo_Cliente)"
-                + "values ((select IdPersona from Persona order by IdPersona desc limit 1),?)";
+        DSQL2= "insert into cliente (idpersona,codigo_cliente)"
+                + "values ((select idpersona from persona order by idpersona desc limit 1),?)";
         try {
-cn=mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            cn=mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getA_Paterno());
@@ -111,15 +115,15 @@ cn=mysql.conectar();
     }
 
     public boolean editar(Cliente dts) {
-        sSQL = "update Persona set Nombre=?,APaterno=?,AMaterno=?,Tipo_Documento=?,num_documento=?,"
-                + " Direccion=?,Telefono=?,Email=? where IdPersona=?";
+        DSQL = "update persona set nombre=?,apaterno=?,amaterno=?,tipo_documento=?,num_documento=?,"
+                + " direccion=?,telefono=?,email=? where idpersona=?";
         
-        sSQL2 = "update Cliente set Codigo_Cliente=?"
-                + " where IdPersona=?";
+        DSQL2= "update cliente set codigo_cliente=?"
+                + " where idpersona=?";
         try {
-cn=mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            cn=mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getA_Paterno());
@@ -157,17 +161,16 @@ cn=mysql.conectar();
     }
 
     public boolean eliminar(Cliente dts) {
-        sSQL = "delete from Cliente where IdPersona=?";
-        sSQL2 = "delete from Persona where IdPersona=?";
+        DSQL = "delete from cliente where idpersona=?";
+        DSQL2= "delete from persona where idpersona=?";
 
         try {
-cn=mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            cn=mysql.conectar();
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             
             pst.setInt(1, dts.getIdPersona());
-
             
             pst2.setInt(1, dts.getIdPersona());
 

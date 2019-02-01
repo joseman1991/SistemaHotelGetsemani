@@ -14,7 +14,7 @@ public class F_Pago {
   
    private Conexion mysql=new Conexion();
    private Connection cn;
-   private String sSQL="";
+   private String DSQL="";
    public Integer TotalRegistros;
 
   
@@ -29,22 +29,22 @@ public class F_Pago {
        TotalRegistros=0;
        modelo = new DefaultTableModel(null,titulos);
        
-       sSQL="select * from Pago where IdReserva="+ buscar + " order by IdPago desc";
+       DSQL="select * from pago where idreserva="+ buscar + " order by idpago desc";
        
        try {
            cn=mysql.conectar();
            Statement st= cn.createStatement();
-           ResultSet rs=st.executeQuery(sSQL);
+           ResultSet rs=st.executeQuery(DSQL);
            
            while(rs.next()){
-               registro [0]=rs.getString("Id.Pago");
-               registro [1]=rs.getString("IdReserva");
-               registro [2]=rs.getString("Tipo_Comprobante");
-               registro [3]=rs.getString("Numero_Comprobante");
-               registro [4]=rs.getString("Iva");
-               registro [5]=rs.getString("Total_Pago");
-               registro [6]=rs.getString("Fecha_Emision");
-               registro [7]=rs.getString("Fecha_Pago");
+               registro [0]=rs.getString("idpago");
+               registro [1]=rs.getString("idreserva");
+               registro [2]=rs.getString("tipo_comprobante");
+               registro [3]=rs.getString("num_comprobante");
+               registro [4]=rs.getString("iva");
+               registro [5]=rs.getString("total_pago");
+               registro [6]=rs.getString("fecha_emision");
+               registro [7]=rs.getString("fecha_pago");
                
                TotalRegistros=TotalRegistros+1;
                modelo.addRow(registro);
@@ -60,11 +60,11 @@ public class F_Pago {
    } 
    
    public boolean Insertar (Pago dts){
-       sSQL="insert into Pago (IdReserva,Tipo_Comprobante,Numero_Comprobante,Iva,Total_Pago,Fecha_Emision,Fecha_Pago)" +
+       DSQL="insert into pago (idreserva,tipo_comprobante,num_comprobante,iva,total_pago,fecha_emision,fecha_pago)" +
                "values (?,?,?,?,?,?,?)";
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            pst.setInt(1, dts.getIdReserva());
            pst.setString(2, dts.getTipo_Comprobante());
            pst.setString(3, dts.getNumero_Comprobante());
@@ -83,7 +83,6 @@ public class F_Pago {
                return false;
            }
            
-           
        } catch (Exception e) {
            JOptionPane.showConfirmDialog(null, e);
            return false;
@@ -91,12 +90,12 @@ public class F_Pago {
    }
    
    public boolean Editar (Pago dts){
-       sSQL="update Pago set IdReserva=?,Tipo_Comprobante=?,Numero_Comprobante=?,Iva=?,Total_Pago=?,Fecha_Emision=?,Fecha_Pago=?"+
-               " where IdPago=?";
+       DSQL="update pago set idreserva=?,tipo_comprobante=?,num_comprobante=?,iva=?,total_pago=?,fecha_emision=?,fecha_pago=?"+
+               " where idpago=?";
            
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            pst.setInt(1, dts.getIdReserva());
            pst.setString(2, dts.getTipo_Comprobante());
            pst.setString(3, dts.getNumero_Comprobante());
@@ -122,11 +121,11 @@ public class F_Pago {
    }
   
    public boolean eliminar (Pago dts){
-       sSQL="delete from Pago where IdPago=?";
+       DSQL="delete from pago where idpago=?";
        
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            
            pst.setInt(1, dts.getIdPago());
            

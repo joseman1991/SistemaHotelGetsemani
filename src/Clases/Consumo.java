@@ -4,71 +4,71 @@ package Clases;
 
 public class Consumo {
     
-    private int IdConsumo;
-    private int IdReserva;
-    private int IdProducto;
-    private Double Cantidad;
-    private Double Precio_Venta;
-    private String Estado;
+    private int idconsumo;
+    private int idreserva;
+    private int idproducto;
+    private int cantidad;
+    private Double precio_venta;
+    private String estado;
 
     public Consumo() {
     }
 
-    public Consumo(int IdConsumo, int IdReserva, int IdProducto, Double Cantidad, Double Precio_Venta, String Estado) {
-        this.IdConsumo = IdConsumo;
-        this.IdReserva = IdReserva;
-        this.IdProducto = IdProducto;
-        this.Cantidad = Cantidad;
-        this.Precio_Venta = Precio_Venta;
-        this.Estado = Estado;
+    public Consumo(int idconsumo, int idreserva, int idproducto, int cantidad, Double precio_venta, String estado) {
+        this.idconsumo = idconsumo;
+        this.idreserva = idreserva;
+        this.idproducto = idproducto;
+        this.cantidad = cantidad;
+        this.precio_venta = precio_venta ;
+        this.estado = estado;
     }
 
     public int getIdConsumo() {
-        return IdConsumo;
+        return idconsumo;
     }
 
     public void setIdConsumo(int IdConsumo) {
-        this.IdConsumo = IdConsumo;
+        this.idconsumo = IdConsumo;
     }
 
     public int getIdReserva() {
-        return IdReserva;
+        return idreserva;
     }
 
     public void setIdReserva(int IdReserva) {
-        this.IdReserva = IdReserva;
+        this.idreserva = IdReserva;
     }
 
     public int getIdProducto() {
-        return IdProducto;
+        return idproducto;
     }
 
     public void setIdProducto(int IdProducto) {
-        this.IdProducto = IdProducto;
+        this.idproducto = IdProducto;
     }
 
-    public Double getCantidad() {
-        return Cantidad;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setCantidad(Double Cantidad) {
-        this.Cantidad = Cantidad;
+    public void setCantidad(int Cantidad) {
+        this.cantidad = Cantidad;
     }
 
     public Double getPrecio_Venta() {
-        return Precio_Venta;
+        return precio_venta;
     }
 
     public void setPrecio_Venta(Double Precio_Venta) {
-        this.Precio_Venta = Precio_Venta;
+        this.precio_venta = Precio_Venta;
     }
 
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(String Estado) {
-        this.Estado = Estado;
+        this.estado = Estado;
     }
     
     

@@ -4,62 +4,62 @@ package Clases;
 
 public class Empleado extends Persona{
     
-    private Double Sueldo;
-    private String Acceso;
-    private String Login;
-    private String Password;
-    private String Estado;
+    private Double sueldo;
+    private String acceso;
+    private String login;
+    private String password;
+    private String estado;
 
     
      public Empleado() {
     }
      
-    public Empleado(Double Sueldo, String Acceso, String Login, String Password, String Estado) {
-        this.Sueldo = Sueldo;
-        this.Acceso = Acceso;
-        this.Login = Login;
-        this.Password = Password;
-        this.Estado = Estado;
+    public Empleado(Double sueldo, String acceso, String login, String password, String estado) {
+        this.sueldo = sueldo;
+        this.acceso = acceso;
+        this.login = login;
+        this.password = password;
+        this.estado = estado;
     }
 
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(String estado) {
-        this.Estado = estado;
+        this.estado = estado;
     }
 
     public Double getSueldo() {
-        return Sueldo;
+        return sueldo;
     }
 
     public void setSueldo(Double Sueldo) {
-        this.Sueldo = Sueldo;
+        this.sueldo = Sueldo;
     }
 
     public String getAcceso() {
-        return Acceso;
+        return acceso;
     }
 
     public void setAcceso(String Acceso) {
-        this.Acceso = Acceso;
+        this.acceso = Acceso;
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
     public void setLogin(String Login) {
-        this.Login = Login;
+        this.login = Login;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String Password) {
-        this.Password = Password;
+        this.password = Password;
     }
     
     

@@ -3,61 +3,63 @@ package Clases;
 
 public class Producto {
   
-  private int IdProducto;
-  private String Nombre;
-  private String Descripcion;
-  private String Unidad_Medida;
-  private Double Precio_Venta;
+  private int idproducto;
+  private String nombre;
+  private String descripcion;
+  private String unidad_medida;
+  private Double precio_venta;
 
     public Producto() {
     }
 
-    public Producto(int IdProducto, String Nombre, String Descripcion, String Unidad_Medida, Double Precio_Venta) {
-        this.IdProducto = IdProducto;
-        this.Nombre = Nombre;
-        this.Descripcion = Descripcion;
-        this.Unidad_Medida = Unidad_Medida;
-        this.Precio_Venta = Precio_Venta;
+    public Producto(int idproducto, String nombre, String descripcion, String unidad_medida, Double precio_venta) {
+        this.idproducto = idproducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.unidad_medida = unidad_medida;
+        this.precio_venta = precio_venta;
     }
 
+   
+
     public int getIdProducto() {
-        return IdProducto;
+        return idproducto;
     }
 
     public void setIdProducto(int IdProducto) {
-        this.IdProducto = IdProducto;
+        this.idproducto = IdProducto;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
     public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+        this.descripcion = Descripcion;
     }
 
     public String getUnidad_Medida() {
-        return Unidad_Medida;
+        return unidad_medida;
     }
 
     public void setUnidad_Medida(String Unidad_Medida) {
-        this.Unidad_Medida = Unidad_Medida;
+        this.unidad_medida = Unidad_Medida;
     }
 
     public Double getPrecio_Venta() {
-        return Precio_Venta;
+        return precio_venta;
     }
 
     public void setPrecio_Venta(Double Precio_Venta) {
-        this.Precio_Venta = Precio_Venta;
+        this.precio_venta = Precio_Venta;
     }
 
    

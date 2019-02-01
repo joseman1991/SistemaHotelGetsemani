@@ -2,101 +2,101 @@
 package Clases;
 
 public class Persona {
-    private int IdPersona;
-    private String Nombre;
-    private String A_Paterno;
-    private String A_Materno;
-    private String Tipo_Documento;
-    private String Numero_Documento;
-    private String Direccion;
-    private String Telefono;
-    private String Email;
+    private int idpersona;
+    private String nombre;
+    private String apaterno;
+    private String amaterno;
+    private String tipo_documento;
+    private String num_documento;
+    private String direccion;
+    private String telefono;
+    private String email;
 
     public Persona() {
     }
 
-    public Persona(int IdPersona, String Nombre, String A_Paterno, String A_Materno, String Tipo_Documento, String Numero_Documento, String Direccion, String Telefono, String Email) {
-        this.IdPersona = IdPersona;
-        this.Nombre = Nombre;
-        this.A_Paterno = A_Paterno;
-        this.A_Materno = A_Materno;
-        this.Tipo_Documento = Tipo_Documento;
-        this.Numero_Documento = Numero_Documento;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
-        this.Email = Email;
+    public Persona(int idpersona, String nombre, String apaterno, String amaterno, String tipo_documento, String num_documento, String direccion, String telefono, String email) {
+        this.idpersona = idpersona;
+        this.nombre = nombre;
+        this.apaterno = apaterno;
+        this.amaterno = amaterno;
+        this.tipo_documento = tipo_documento;
+        this.num_documento = num_documento;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     public int getIdPersona() {
-        return IdPersona;
+        return idpersona;
     }
 
     public void setIdPersona(int IdPersona) {
-        this.IdPersona = IdPersona;
+        this.idpersona = IdPersona;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public String getA_Paterno() {
-        return A_Paterno;
+        return apaterno;
     }
 
     public void setA_Paterno(String A_Paterno) {
-        this.A_Paterno = A_Paterno;
+        this.apaterno = A_Paterno;
     }
 
     public String getA_Materno() {
-        return A_Materno;
+        return amaterno;
     }
 
     public void setA_Materno(String A_Materno) {
-        this.A_Materno = A_Materno;
+        this.amaterno = A_Materno;
     }
 
     public String getTipo_Documento() {
-        return Tipo_Documento;
+        return tipo_documento;
     }
 
     public void setTipo_Documento(String Tipo_Documento) {
-        this.Tipo_Documento = Tipo_Documento;
+        this.tipo_documento = Tipo_Documento;
     }
 
     public String getNumero_Documento() {
-        return Numero_Documento;
+        return num_documento;
     }
 
     public void setNumero_Documento(String Numero_Documento) {
-        this.Numero_Documento = Numero_Documento;
+        this.num_documento = Numero_Documento;
     }
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+        this.direccion = Direccion;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+        this.telefono = Telefono;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
 

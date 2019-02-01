@@ -25,21 +25,20 @@ public class F_Reserva {
    public DefaultTableModel Mostrar(String buscar){
        DefaultTableModel modelo;
        
-       String [] titulos = {"ID","IdHabitacion","Numero","IdCliente","Cliente","IdTrabajador","Trabajador","Tipo Reserva","Fecha Reserva","Fecha Ingreso","Fecha Salida","Costo","Estado"};
+       String [] titulos = {"ID","IdHabitacion","Numero","IdCliente","Cliente","IdEmpleado","Empleado","Tipo Reserva","Fecha Reserva","Fecha Ingreso","Fecha Salida","Costo","Estado"};
        
        String [] registro =new String [13];
        
        TotalRegistros=0;
        modelo = new DefaultTableModel(null,titulos);
        
-       sSQL="select r.IdReserva,r.IdHabitacion,h.Numero,r.IdCliente,"+
-               "(select Nombre from Persona where IdPersona=r.IdCliente)as Clienten,"+
-               "(select APaterno from Persona where IdPersona=r.IdCliente)as Clienteap,"+
-               "r.IdTrabajador,(select Nombre from Persona where IdPersona=r.IdTrabajador)as Trabajadorn,"+
-               "(select apaterno from persona where idpersona=r.idtrabajador)as trabajadorap,"+
-               "r.Tipo_Reserva,r.Fecha_Reserva,r.fec"
-               + "ha_Ingresa,r.Fecha_Salida,"+
-               "r.Costo_Alojamiento,r.estado from Reserva r inner join Habitacion h on r.IdHabitacion=h.IdHabitacion order by IdReserva desc";
+       sSQL="select r.idreserva,r.idhabitacion,h.numero,r.idcliente,"+
+               "(select nombre from persona where idpersona=r.idcliente)as clienten,"+
+               "(select apaterno from persona where idpersona=r.idcliente)as clienteap,"+
+               "r.idempleado,(select nombre from persona where idpersona=r.idempleado)as empleadon,"+
+               "(select apaterno from persona where idpersona=r.idempleado)as empleadoap,"+
+               "r.tipo_reserva,r.fecha_reserva,r.fecha_ingresa,r.fecha_salida,r.costo_alojamiento,r.estado "+
+               "from reserva r inner join habitacion h on r.idhabitacion=h.idhabitacion where r.estado like '%"+ buscar + "%' order by idreserva desc";
        
        try {
            cn=mysql.conectar();
@@ -47,19 +46,19 @@ public class F_Reserva {
            ResultSet rs=st.executeQuery(sSQL);
            
            while(rs.next()){
-               registro [0]=rs.getString("Idreserva");
-               registro [1]=rs.getString("IdHabitacion");
-               registro [2]=rs.getString("Numero");
-               registro [3]=rs.getString("IdCliente");
-               registro [4]=rs.getString("Clienten") + " " + rs.getString("clienteap") ;
-               registro [5]=rs.getString("IdTrabajador");
-               registro [6]=rs.getString("Trabajadorn") + " " + rs.getString("trabajadorap");
-               registro [7]=rs.getString("Tipo_Reserva");
-               registro [8]=rs.getString("Fecha_Reserva");
-               registro [9]=rs.getString("Fecha_Ingresa");
-               registro [10]=rs.getString("Fecha_Salida");
-               registro [11]=rs.getString("Costo_Alojamiento");
-               registro [12]=rs.getString("Estado");
+               registro [0]=rs.getString("idreserva");
+               registro [1]=rs.getString("idhabitacion");
+               registro [2]=rs.getString("numero");
+               registro [3]=rs.getString("idcliente");
+               registro [4]=rs.getString("clienten") + " " + rs.getString("clienteap") ;
+               registro [5]=rs.getString("idempleado");
+               registro [6]=rs.getString("empleadon") + " " + rs.getString("empleadoap");
+               registro [7]=rs.getString("tipo_reserva");
+               registro [8]=rs.getString("fecha_reserva");
+               registro [9]=rs.getString("fecha_ingresa");
+               registro [10]=rs.getString("fecha_salida");
+               registro [11]=rs.getString("costo_alojamiento");
+               registro [12]=rs.getString("estado");
                
                TotalRegistros=TotalRegistros+1;
                modelo.addRow(registro);
@@ -77,7 +76,7 @@ public class F_Reserva {
    } 
    
    public boolean Insertar (Reserva dts){
-       sSQL="insert into Reserva (IdHabitacion,IdCliente,IdTrabajador,Tipo_Reserva,Fecha_Reserva,Fecha_Ingresa,Fecha_Salida,Costo_Alojamiento,Estado)" +
+       sSQL="insert into reserva (idhabitacion,idcliente,idempleado,tipo_reserva,fecha_reserva,fecha_ingresa,fecha_salida,costo_alojamiento,estado)" +
                "values (?,?,?,?,?,?,?,?,?)";
        try {
            cn=mysql.conectar();
@@ -87,7 +86,7 @@ public class F_Reserva {
            pst.setInt(3, dts.getIdEmpleado());
            pst.setString(4, dts.getTipo_Reserva());
            pst.setDate(5, dts.getFecha_Reserva());
-           pst.setDate(6, dts.getFecha_Reserva());
+           pst.setDate(6, dts.getFecha_Ingreso());
            pst.setDate(7, dts.getFecha_Salida());
            pst.setDouble(8, dts.getCosto_Alojamiento());
            pst.setString(9, dts.getEstado());
@@ -101,8 +100,6 @@ public class F_Reserva {
                return false;
            }
            
-           
-           
        } catch (Exception e) {
            JOptionPane.showConfirmDialog(null, e);
            return false;
@@ -110,8 +107,8 @@ public class F_Reserva {
    }
    
    public boolean editar (Reserva dts){
-       sSQL="update Reserva set IdHabitacion=?,IdCliente=?,IdTrabajador=?,Tipo_Reserva=?,Fecha_Reserva=?,Fecha_Ingresa=?,Fecha_Salida=?,Costo_Alojamiento=?,Estado=?"+
-               " where IdReserva=?";
+       sSQL="update reserva set idhabitacion=?,idcliente=?,idempleado=?,tipo_reserva=?,fecha_reserva=?,fecha_ingresa=?,fecha_salida=?,costo_alojamiento=?,estado=?"+
+               " where idreserva=?";
            
        
        try {
@@ -143,15 +140,12 @@ public class F_Reserva {
        }
    }
    
-   public boolean Pagar (Reserva dts){
-       sSQL="update Reserva set Estado='Pagada'"+
-               " where IdReserva=?";
-           //alt + 39
+   public boolean Eliminar (Reserva dts){
+       sSQL="delete from reserva where idreserva=?";
        
        try {
            cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
-             
            
            pst.setInt(1, dts.getIdReserva());
            
@@ -170,14 +164,15 @@ public class F_Reserva {
        }
    }
    
-  
-   public boolean Eliminar (Reserva dts){
-       sSQL="delete from Reserva where IdReserva=?";
+    public boolean Pagar (Reserva dts){
+       sSQL="update reserva set estado='Pagada'"+
+               " where idreserva=?";
+           
        
        try {
            cn=mysql.conectar();
            PreparedStatement pst=cn.prepareStatement(sSQL);
-           
+             
            pst.setInt(1, dts.getIdReserva());
            
            int n=pst.executeUpdate();

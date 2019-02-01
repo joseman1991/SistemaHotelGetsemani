@@ -7,19 +7,16 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-//    protected Connection conexion = null; //Cargar el Drive
-//    PreparedStatement st; //Conecta al motor 
-//    ResultSet rs; //Procesa las consultas  (INFORMACION)
     public String db;
     public String url;
     public String user = "postgres";
-    public String pass = "postgres";
+    public String pass = "0202572723";
 
     public Conexion() {
-        db = "sistemahotelgetsamani";
+        db = "sistemahotelgetsemani";
         url = "jdbc:postgresql://localhost:5432/" + db;
         user = "postgres";
-        pass = "postgres";
+        pass = "0202572723";
     }
 
     public Connection conectar() throws SQLException {

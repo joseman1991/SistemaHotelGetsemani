@@ -13,8 +13,8 @@ public class F_Empleado {
 
     private final Conexion mysql = new Conexion();
     private Connection cn;
-    private String sSQL = "";
-    private String sSQL2 = "";
+    private String DSQL = "";
+    private String DSQL2 = "";
     public Integer TotalRegistros;
 
     public DefaultTableModel Mostrar(String buscar) {
@@ -27,31 +27,31 @@ public class F_Empleado {
         TotalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        sSQL = "select p.IdPersona,p.Nombre,p.APaterno,p.AMaterno,p.Tipo_Documento,p.num_documento,"
-                + "p.Direccion,p.Telefono,p.Email,t.Sueldo,t.Acceso,t.Login,t.Password,t.Estado from Persona p inner join trabajador t "
-                + "on p.IdPersona=t.IdPersona where num_documento like '%"
-                + buscar + "%' order by IdPersona desc";
+        DSQL = "select p.idpersona,p.nombre,p.apaterno,p.amaterno,p.tipo_documento,p.num_documento,"
+                + "p.direccion,p.telefono,p.email,t.sueldo,t.acceso,t.login,t.password,t.estado from persona p inner join empleado t "
+                + "on p.idpersona=t.idpersona where num_documento like '%"
+                + buscar + "%' order by idpersona desc";
 
         try {
              cn = mysql.conectar();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
+            ResultSet rs = st.executeQuery(DSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("IdPersona");
-                registro[1] = rs.getString("Nombre");
-                registro[2] = rs.getString("APaterno");
-                registro[3] = rs.getString("AMaterno");
-                registro[4] = rs.getString("Tipo_Documento");
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("apaterno");
+                registro[3] = rs.getString("amaterno");
+                registro[4] = rs.getString("tipo_documento");
                 registro[5] = rs.getString("num_documento");
-                registro[6] = rs.getString("Direccion");
-                registro[7] = rs.getString("Telefono");
-                registro[8] = rs.getString("Email");
-                registro[9] = rs.getString("Sueldo");
-                registro[10] = rs.getString("Acceso");
-                registro[11] = rs.getString("Login");
-                registro[12] = rs.getString("Password");
-                registro[13] = rs.getString("Estado");
+                registro[6] = rs.getString("direccion");
+                registro[7] = rs.getString("telefono");
+                registro[8] = rs.getString("email");
+                registro[9] = rs.getString("sueldo");
+                registro[10] = rs.getString("acceso");
+                registro[11] = rs.getString("login");
+                registro[12] = rs.getString("password");
+                registro[13] = rs.getString("estado");
 
                 TotalRegistros = TotalRegistros + 1;
                 modelo.addRow(registro);
@@ -67,14 +67,14 @@ public class F_Empleado {
     }
 
     public boolean insertar(Empleado dts) {
-        sSQL = "insert into Persona (Nombre,APaterno,AMaterno,Tipo_Documento,num_documento,Direccion,Telefono,Email)"
+        DSQL = "insert into persona (nombre,apaterno,amaterno,tipo_documento,num_documento,direccion,telefono,email)"
                 + "values (?,?,?,?,?,?,?,?)";
-        sSQL2 = "insert into trabajador (IdPersona,Sueldo,Acceso,Login,Password,Estado)"
-                + "values ((select IdPersona from Persona order by IdPersona desc limit 1),?,?,?,?,?)";
+        DSQL2 = "insert into empleado (idpersona,sueldo,acceso,login,password,estado)"
+                + "values ((select idpersona from persona order by idpersona desc limit 1),?,?,?,?,?)";
         try {
             cn = mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getA_Paterno());
@@ -114,15 +114,15 @@ public class F_Empleado {
     }
 
     public boolean editar(Empleado dts) {
-        sSQL = "update Persona set Nombre=?,APaterno=?,AMaterno=?,Tipo_Tocumento=?,num_documento=?,"
-                + " Direccion=?,Telefono=?,Email=? where IdPersona=?";
+        DSQL = "update persona set nombre=?,apaterno=?,amaterno=?,tipo_documento=?,num_documento=?,"
+                + " direccion=?,telefono=?,email=? where idpersona=?";
 
-        sSQL2 = "update trabajador set Sueldo=?,Acceso=?,Login=?,Password=?,Estado=?"
-                + " where IdPersona=?";
+        DSQL2 = "update empleado set sueldo=?,acceso=?,login=?,password=?,estado=?"
+                + " where idpersona=?";
         try {
             cn = mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getA_Paterno());
@@ -164,13 +164,13 @@ public class F_Empleado {
     }
 
     public boolean eliminar(Empleado dts) {
-        sSQL = "delete from trabajador where IdPersona=?";
-        sSQL2 = "delete from Persona where IdPersona=?";
+        DSQL = "delete from empleado where idpersona=?";
+        DSQL2 = "delete from persona where idpersona=?";
 
         try {
             cn = mysql.conectar();
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            PreparedStatement pst2 = cn.prepareStatement(sSQL2);
+            PreparedStatement pst = cn.prepareStatement(DSQL);
+            PreparedStatement pst2 = cn.prepareStatement(DSQL2);
 
             pst.setInt(1, dts.getIdPersona());
             pst2.setInt(1, dts.getIdPersona());
@@ -207,26 +207,26 @@ public class F_Empleado {
         TotalRegistros = 0;
         modelo = new DefaultTableModel(null, titulos);
 
-        sSQL = "select p.IdPersona,p.Nombre,p.APaterno,p.AMaterno,"
-                + "t.Acceso,t.Login,t.Password,t.Estado from Persona p inner join trabajador t "
-                + "on p.IdPersona=t.IdPersona where t.Login='"
-                + login + "' and t.Password='" + password + "' and t.Estado='A'";
+        DSQL = "select p.idpersona,p.nombre,p.apaterno,p.amaterno,"
+                + "t.acceso,t.login,t.password,t.estado from persona p inner join empleado t "
+                + "on p.idpersona=t.idpersona where t.login='"
+                + login + "' and t.password='" + password + "' and t.estado='A'";
 
         try {
             cn = mysql.conectar();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sSQL);
+            ResultSet rs = st.executeQuery(DSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("IdPersona");
-                registro[1] = rs.getString("Nombre");
-                registro[2] = rs.getString("APaterno");
-                registro[3] = rs.getString("AMaterno");
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("apaterno");
+                registro[3] = rs.getString("amaterno");
 
-                registro[4] = rs.getString("Acceso");
-                registro[5] = rs.getString("Login");
+                registro[4] = rs.getString("acceso");
+                registro[5] = rs.getString("login");
                 registro[6] = rs.getString("password");
-                registro[7] = rs.getString("Estado");
+                registro[7] = rs.getString("estado");
 
                 TotalRegistros = TotalRegistros + 1;
                 modelo.addRow(registro);

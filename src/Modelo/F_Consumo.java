@@ -15,14 +15,14 @@ public class F_Consumo {
    private Conexion mysql=new Conexion();
    private Connection cn;
    
-   private String sSQL="";
+   private String DSQL="";
    public Integer TotalRegistros;
    public Double TotalConsumo;
    
    public DefaultTableModel mostrar(String buscar){
        DefaultTableModel modelo;
        
-       String [] titulos = {"Id","IdReserva","IdProducto","Producto","Cantidad","Precio Venta","Estado"};
+       String [] titulos = {"Id","idreserva","idproducto","producto","cantidad","precio venta","estado"};
        
        String [] registro =new String [7];
        
@@ -30,27 +30,26 @@ public class F_Consumo {
        TotalConsumo=0.0;
        modelo = new DefaultTableModel(null,titulos);
        
-       sSQL="select c.Idconsumo,c.IdReserva,c.IdProducto,p.Nombre,c.Cantidad,c.Precio_Venta "
-               + ",c.Estado from Consumo c inner join Producto p on c.IdProducto=p.IdProducto"
-               + " where c.IdReserva ="+ buscar + " order by c.IdConsumo desc";
+       DSQL="select c.idconsumo,c.idreserva,c.idproducto,p.nombre,c.cantidad,c.precio_venta "
+               + ",c.estado from consumo c inner join producto p on c.idproducto=p.idproducto"
+               + " where c.idreserva ="+ buscar + " order by c.idconsumo desc";
        
        try {
            cn=mysql.conectar();
            Statement st= cn.createStatement();
-           ResultSet rs=st.executeQuery(sSQL);
+           ResultSet rs=st.executeQuery(DSQL);
            
            while(rs.next()){
-               registro [0]=rs.getString("Idconsumo");
-               registro [1]=rs.getString("IdReserva");
-               registro [2]=rs.getString("IdProducto");
-               registro [3]=rs.getString("Nombre");
-               registro [4]=rs.getString("Cantidad");
-               registro [5]=rs.getString("Precio_Venta");
-               registro [6]=rs.getString("Estado");
+               registro [0]=rs.getString("idconsumo");
+               registro [1]=rs.getString("idreserva");
+               registro [2]=rs.getString("idproducto");
+               registro [3]=rs.getString("nombre");
+               registro [4]=rs.getString("cantidad");
+               registro [5]=rs.getString("precio_venta");
+               registro [6]=rs.getString("estado");
                
                TotalRegistros=TotalRegistros+1;
-               TotalConsumo=TotalConsumo + (rs.getDouble("Cantidad") * rs.getDouble("Precio_Venta") );
-               
+               TotalConsumo=TotalConsumo + (rs.getDouble("cantidad") * rs.getDouble("precio_venta") );
                modelo.addRow(registro);
                
            }
@@ -59,24 +58,20 @@ public class F_Consumo {
        } catch (Exception e) {
            JOptionPane.showConfirmDialog(null, e);
            return null;
-       }
-       
-       
-       
+       } 
    } 
    
    public boolean insertar (Consumo dts){
-       sSQL="insert into Consumo (IdReserva,IdProducto,Cantidad,Precio_Venta,Estado)" +
+       DSQL="insert into consumo (idreserva,idproducto,cantidad,precio_venta,estado)" +
                "values (?,?,?,?,?)";
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            pst.setInt(1, dts.getIdReserva());
            pst.setInt(2, dts.getIdProducto());
            pst.setDouble(3, dts.getCantidad());
            pst.setDouble(4, dts.getPrecio_Venta());
            pst.setString(5, dts.getEstado());
-           
            
            int n=pst.executeUpdate();
            
@@ -87,8 +82,6 @@ public class F_Consumo {
                return false;
            }
            
-           
-           
        } catch (Exception e) {
            JOptionPane.showConfirmDialog(null, e);
            return false;
@@ -96,13 +89,13 @@ public class F_Consumo {
    }
    
    public boolean editar (Consumo dts){
-       sSQL="update consumo set IdReserva=?,IdProducto()=?,Cantidad=?,Precio_Venta=?,Estado=?"+
-               " where IdConsumo=?";
+       DSQL="update consumo set idreserva=?,idproducto()=?,cantidad=?,precio_venta=?,estado=?"+
+               " where idconsumo=?";
            
        
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            pst.setInt(1, dts.getIdReserva());
            pst.setInt(2, dts.getIdProducto());
            pst.setDouble(3, dts.getCantidad());
@@ -126,11 +119,11 @@ public class F_Consumo {
    }
   
    public boolean eliminar (Consumo dts){
-       sSQL="delete from Consumo where IdConsumo=?";
+       DSQL="delete from consumo where idconsumo=?";
        
        try {
            cn=mysql.conectar();
-           PreparedStatement pst=cn.prepareStatement(sSQL);
+           PreparedStatement pst=cn.prepareStatement(DSQL);
            
            pst.setInt(1, dts.getIdConsumo());
            
